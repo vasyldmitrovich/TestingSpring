@@ -9,7 +9,9 @@
 
     <bean id="testBean"
           class="org.vasyldmitrovich.firstspring.TestBean">
-        <constructor-arg value="VolodyaThisIsFirstMen"/>
+        <constructor-arg value="Volodya"/>
+        <constructor-arg value="22"/>
+        <constructor-arg value="true"/>
     </bean>
 
 </beans>
