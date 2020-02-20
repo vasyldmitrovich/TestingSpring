@@ -1,4 +1,4 @@
-package org.vasyldmitrovich.firstspring;
+package org.vasyldmitrovich.firstspring.musicplayer;
 
 public class RockMusic implements Music {
     @Override

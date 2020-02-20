@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans  xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
-        http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath:musicPlayer.properties"></context:property-placeholder>
+<!--This is test how working spring-->
     <bean id="testBean"
           class="org.vasyldmitrovich.firstspring.TestBean">
         <constructor-arg value="Volodya"/>
         <constructor-arg value="22"/>
         <constructor-arg value="true"/>
     </bean>
+<!--This is only one song-->
+    <bean id="testMusic" class="org.vasyldmitrovich.firstspring.musicplayer.ClassicalMusic"></bean>
 
-    <bean id="testMusic" class="org.vasyldmitrovich.firstspring.RockMusic">
+    <bean id="musicPlayer" class="org.vasyldmitrovich.firstspring.musicplayer.MusicPlayer">
+        <property name="music" ref="testMusic"></property>
+        <property name="name" value="${musicPlayer.name}"></property>
+        <property name="volume" value="${musicPlayer.volume}"></property>
     </bean>
 
+<!--    This is list songs -->
+    <bean id="testClassicMusic" class="org.vasyldmitrovich.firstspring.musicplayer.ClassicalMusic"></bean>
+    <bean id="testRockMusic" class="org.vasyldmitrovich.firstspring.musicplayer.RockMusic"></bean>
+    <bean id="testRepMusic" class="org.vasyldmitrovich.firstspring.musicplayer.RapMusic"></bean>
+
+    <bean id="musicPlayList" class="org.vasyldmitrovich.firstspring.musicplayer.MusicPlayer">
+        <property name="musicList">
+            <list>
+                <ref bean="testClassicMusic"/>
+                <ref bean="testRockMusic"/>
+                <ref bean="testRepMusic"/>
+            </list>
+        </property>
+
+    </bean>
 </beans>
